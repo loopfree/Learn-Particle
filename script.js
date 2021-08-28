@@ -65,11 +65,11 @@ class Particle {
         //     }
         // }
 
-        if(this.x < canvas.width) {
+        if(this.x > canvas.width) {
         	this.directionX *= -1;
         }
 
-        if(this.x > 0) { 
+        if(this.x < 0) { 
         	this.directionX *= -1;
        	}
 
