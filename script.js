@@ -47,23 +47,39 @@ class Particle {
         }
 
         // collision
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx*dx + dy*dy);
-        if (distance < mouse.radius + this.size) {
-            if (mouse.x < this.x && this.x < canvas.width  - this.size * 10) {
-                this.x += 10;
-            }
-            if (mouse.x > this.x && this.x > this.size * 10) {
-                this.x -= 10;
-            }
-            if (mouse.y < this.y && this.y < canvas.height  - this.size * 10) {
-                this.y += 10;
-            }
-            if (mouse.y > this.y && this.y > this.size * 10) {
-                this.y -= 10;
-            }
+        // let dx = mouse.x - this.x;
+        // let dy = mouse.y - this.y;
+        // let distance = Math.sqrt(dx*dx + dy*dy);
+        // if (distance < mouse.radius + this.size) {
+        //     if (mouse.x < this.x && this.x < canvas.width  - this.size * 10) {
+        //         this.directionX *= -1;
+        //     }
+        //     if (mouse.x > this.x && this.x > this.size * 10) {
+        //         this.directionX *= -1;
+        //     }
+        //     if (mouse.y < this.y && this.y < canvas.height  - this.size * 10) {
+        //         this.directionY *= -1;
+        //     }
+        //     if (mouse.y > this.y && this.y > this.size * 10) {
+        //         this.direction.Y *=;
+        //     }
+        // }
+
+        if(this.x < canvas.width) {
+        	this.directionX *= -1;
         }
+
+        if(this.x > 0) { 
+        	this.directionX *= -1;
+       	}
+
+       	if(this.y > canvas.height) {
+       		this.directionY *= -1;
+       	}
+
+       	if(this.y < 0) {
+       		this.directionY *= -1;
+       	}
 
         // move particle
         this.x += this.directionX;
@@ -79,7 +95,7 @@ function init() {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
     for (let i=0; i<numberOfParticles; i++) {
-        let size = (Math.random() * 5) + 1;
+        let size = 10//(Math.random() * 5) + 1;
         let x = 50//(Math.random() * ((innerWidth - size * 2)-(size * 2)) + size * 2);
         let y = 50//(Math.random() * ((innerHeight - size * 2)-(size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
