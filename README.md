@@ -1,2 +1,1 @@
-# Learn-Particle
-Testing Particle Vanilla JS
+# Learn making particle with vanilla js
