@@ -5,6 +5,14 @@ canvas.heigth = window.innerHeight;
 
 let particlesArray;
 
+let DegToRad = function(degrees) {
+	return degrees * Math.PI /180;
+}
+
+let RadToDeg = function(radian) {
+	return radian * 180 / Math.PI;
+}
+
 // get mouse position
 let mouse = {
     x: null,
@@ -14,8 +22,36 @@ let mouse = {
 
 window.addEventListener("mousemove",
     function(event) {
+        // mouse.x = event.x;
+        // mouse.y = event.y;
+        if(mouse.x == null) {
+        	mouse.x = event.x;
+        	mouse.y = event.y;
+        	console.log("yes");
+        	return;
+        }
+        let gradient = Number((event.y - mouse.y) / (event.x - mouse.x));
+
         mouse.x = event.x;
         mouse.y = event.y;
+		let radian = Number(Math.atan(gradient));
+
+		let degree = RadToDeg(radian);
+
+		let cs = Math.cos(radian);
+		let sn = Math.sin(radian);
+
+		particlesArray.forEach(function(particle) {
+			let xDist = (particle.x - mouse.x);
+			let yDist = (particle.y - mouse.y);
+			let checkDist = Math.sqrt((xDist*xDist + yDist*yDist));
+			if(checkDist <= mouse.radius) {
+				let new_x = particle.directionX * cs - particle.directionY * sn;
+				let new_y = particle.directionX * sn + particle.directionY * cs;
+				particle.directionX = new_x;
+				particle.directionY = new_y;
+			}
+		});
     }
 );
 
@@ -86,7 +122,6 @@ class Particle {
         this.y += this.directionY;
         // draw particle
         this.draw();
-
     }
 }
 
