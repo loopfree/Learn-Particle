@@ -50,6 +50,8 @@ window.addEventListener("mousemove",
 				let new_y = particle.directionX * sn + particle.directionY * cs;
 				particle.directionX = new_x;
 				particle.directionY = new_y;
+                let directionX = mouse.x;
+                let directionY = mouse.y;
 			}
 		});
     }
