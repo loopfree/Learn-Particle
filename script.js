@@ -130,7 +130,7 @@ function init() {
     particlesArray = [];
     let numberOfParticles = (canvas.height * canvas.width) / 9000;
     for (let i=0; i<numberOfParticles; i++) {
-        let size = 10//(Math.random() * 5) + 1;
+        let size = (Math.random() * 5) + 1;
         let x = 50//(Math.random() * ((innerWidth - size * 2)-(size * 2)) + size * 2);
         let y = 50//(Math.random() * ((innerHeight - size * 2)-(size * 2)) + size * 2);
         let directionX = (Math.random() * 5) - 2.5;
